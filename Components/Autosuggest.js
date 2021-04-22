@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Autocomplete from "react-native-autocomplete-input";
+import Colors from "../Constants/Colors";
 
 const FlatListSeparator = () => <View style={styles.flatlistSeparator} />;
 
@@ -9,16 +10,19 @@ const AutoSuggest = ({
   onChangeText,
   onSuggestionPress,
   value,
+  zIndex,
 }) => {
   return (
-    <View style={{ width: "100%", marginTop: 20 }}>
-      <View style={styles.autocompleteContainer}>
+    <View style={styles.container}>
+      <View style={[styles.autocompleteContainer, { zIndex: zIndex }]}>
         <Autocomplete
           data={suggestions}
           value={value}
+          hideResults={value.length === 0}
           placeholder="Znacka"
           style={styles.autocompleteComponent}
           onChangeText={onChangeText}
+          containerStyle={{ elevation: 50 }}
           inputContainerStyle={{ borderWidth: 0 }}
           listStyle={styles.listContainer}
           keyboardShouldPersistTaps="always"
@@ -42,26 +46,21 @@ const AutoSuggest = ({
 };
 
 const styles = StyleSheet.create({
+  container: { width: "100%", marginTop: 20 },
   autocompleteContainer: {
     flex: 1,
     left: 0,
     position: "absolute",
     right: 0,
     top: 0,
-    zIndex: 1,
-  },
-  scrollView: {
-    flex: 1,
-    backgroundColor: "pink",
-    marginHorizontal: 20,
-    marginTop: 20,
   },
   autocompleteComponent: {
-    borderRadius: 5,
-    borderWidth: 1,
+    borderRadius: 3,
+    borderWidth: 1.5,
     paddingHorizontal: 10,
-    borderColor: "#000",
-    height: 50,
+    borderColor: Colors.onyxDarker,
+    //  backgroundColor: Colors.lightGray,
+    height: 40,
     fontSize: 18,
   },
   listItem: {
@@ -69,16 +68,9 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     justifyContent: "center",
   },
-  listContainerStyle: {
-    backgroundColor: "yellow",
-    marginVertical: 20,
-  },
-  contentContainerStyle: {
-    flex: 0,
-  },
   flatlistSeparator: {
     borderWidth: 0.5,
-    borderColor: "#ccc",
+    borderColor: Colors.darkGray,
   },
 });
 export default AutoSuggest;
