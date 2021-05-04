@@ -10,6 +10,7 @@ const ReportField = ({ value, onChangeText, label }) => {
       onChangeText={onChangeText}
       mode="outlined"
       style={{ height: 40, width: "40%", marginVertical: 20 }}
+      keyboardType="numeric"
     />
   );
 };

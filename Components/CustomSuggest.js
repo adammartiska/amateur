@@ -20,7 +20,7 @@ const CustomSuggest = ({
   zIndex,
 }) => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <TextInput
         label={label}
         value={value}
